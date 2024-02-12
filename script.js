@@ -1,25 +1,19 @@
 //your code here
-let arr = [2,1,2,1,1,1,2,3,1]
+let arr = [2,1,2,3,1,2,1,21,1,1,1,1,1,1,1];
 alert(getMax(arr))
+
 function getMax(arr) {
+	arr.sort((a,b)=>a-b);
 	let max = 0;
-	let maxEle = 0;
-	for (let i = 0; i < arr.length-1; i++) {
-		let count = 0;
-		for (let j = i+1; j < arr.length; j++) {
-			if (arr[i] === arr[j]) {
-				count++
-			}
-		}
-		if (count > max) {
-			max = count;
+	let maxEle = arr[0];
+	for (let i = 0; i < arr.length; i++) {
+		let eleCount = arr.lastIndexOf(arr[i]) - arr.indexOf(arr[i]);
+		if(eleCount > max){
+			max = eleCount;
 			maxEle = arr[i];
+			i = arr.lastIndexOf(arr[i]);
 		}
 	}
-	if ( max >= Math.floor(arr.length/2) ) {
-		return maxEle
-	}
-	else{
-		return -1
-	}
+	return maxEle;
 }
+
